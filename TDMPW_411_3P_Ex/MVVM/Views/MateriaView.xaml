@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TDMPW_411_3P_Ex.MVVM.Views.MateriaView"
+             Title="MateriaView"
+             >
+    <Grid
+        >
+        <Grid.Background>
+            <LinearGradientBrush
+                EndPoint="1,1" >
+                <GradientStop Offset="0" Color="DarkRed"></GradientStop>
+                <GradientStop Offset="1" Color="DarkBlue"></GradientStop>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Picker Margin="5" ItemsSource="{Binding Opciones}" ZIndex="99" SelectedItem="{Binding SelectedStepString}"></Picker>
+        <VerticalStackLayout  Margin="10">
+            <Label Text="{Binding Materia.Name}"
+                   FontSize="50"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"/>
+            <Entry Placeholder="Ingrese el nombre de la materia..."
+                   PlaceholderColor="LightGray"
+                   BackgroundColor="DarkBlue"
+                   TextColor="White"
+                   Text="{Binding Materia.Name}"
+                   />
+            <Label Text="{Binding Materia.Quantity, StringFormat='Cantidad de rubros: {0}'}" HorizontalOptions="Center" Margin="5"/>
+            <Stepper HorizontalOptions="Center" Margin="5" Minimum="0" Increment="1" Value="{Binding Cantidad}" />
+            <ScrollView Orientation="Vertical" HeightRequest="200">
+                <VerticalStackLayout BindableLayout.ItemsSource="{Binding Materia.Rubros}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                    <HorizontalStackLayout Margin="5" HorizontalOptions="Center">
+                <VerticalStackLayout>
+                                    <Label Text="{Binding Percentage, StringFormat='{0}%'}" HorizontalOptions="Center"/>
+                                    <Stepper Maximum="100" Increment="{Binding Step}" Value="{Binding Percentage}"></Stepper>
+                </VerticalStackLayout>
+                                <Label Text="{Binding Id, StringFormat='Rubro {0}'}" VerticalOptions="Center" Margin="20"/>
+                <Entry Placeholder="..."
+                       PlaceholderColor="LightGray"
+                       Keyboard="Numeric"
+                   BackgroundColor="DarkBlue"
+                   Text="{Binding Grade}"
+                       TextColor="White"
+                       />
+            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+            </ScrollView>
+            <Button Text="CALCULAR" BackgroundColor="Transparent" BorderWidth="4" Margin="40" Command="{Binding ClickCommand}"/>
+            <Label Text="Su Calificación es:" HorizontalOptions="Center" FontSize="30"/>
+            <Label Text="{Binding Materia.FinalGrade}" HorizontalOptions="Center" FontSize="80"/>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

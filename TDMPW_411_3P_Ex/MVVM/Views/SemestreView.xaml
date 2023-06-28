@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TDMPW_411_3P_Ex.MVVM.Views.SemestreView"
+             Title="SemestreView">
+    <Grid
+        >
+        <Grid.Background>
+            <LinearGradientBrush
+                EndPoint="1,1" >
+                <GradientStop Offset="0" Color="DarkRed"></GradientStop>
+                <GradientStop Offset="1" Color="DarkBlue"></GradientStop>
+            </LinearGradientBrush>
+        </Grid.Background>
+       
+        <VerticalStackLayout  Margin="10">
+            <Label Text="{Binding Semestre.Name}"
+                   FontSize="50"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"/>
+            <Entry Placeholder="Ingrese el nombre de la materia..."
+                   PlaceholderColor="LightGray"
+                   BackgroundColor="DarkBlue"
+                   Text="{Binding Semestre.Name}"
+                   />
+            <VerticalStackLayout>
+                <HorizontalStackLayout Margin="5" HorizontalOptions="Center">
+
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Semestre.FirstPercentage, StringFormat='{0}%'}" HorizontalOptions="Center"/>
+                        <Stepper Maximum="100" Increment="{Binding Semestre.Step}" Value="{Binding Semestre.FirstPercentage}"></Stepper>
+                    </VerticalStackLayout>
+
+                    <Label Text="1° Parcial" VerticalOptions="Center" Margin="20"/>
+                    <Entry Placeholder="..."
+                       PlaceholderColor="LightGray"
+                   BackgroundColor="DarkBlue"
+                 Keyboard="Numeric"
+                           Text="{Binding Semestre.FirstGrade}"
+                           TextColor="White"
+                       />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Margin="5" HorizontalOptions="Center">
+
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Semestre.SecondPercentage, StringFormat='{0}%'}" HorizontalOptions="Center"/>
+                        <Stepper Maximum="100" Increment="{Binding Semestre.Step}" Value="{Binding Semestre.SecondPercentage}"></Stepper>
+                    </VerticalStackLayout>
+
+                    <Label Text="2° Parcial" VerticalOptions="Center" Margin="20"/>
+                    <Entry Placeholder="..."
+                           Keyboard="Numeric"
+                           Text="{Binding Semestre.SecondGrade}"
+                       PlaceholderColor="LightGray"
+                   BackgroundColor="DarkBlue"
+                           TextColor="White"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Margin="5"  HorizontalOptions="CenterAndExpand">
+
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Semestre.ThirdPercentage, StringFormat='{0}%'}" HorizontalOptions="Center"/>
+                        <Stepper Maximum="100" Increment="{Binding Semestre.Step}" Value="{Binding Semestre.ThirdPercentage}"></Stepper>
+                    </VerticalStackLayout>
+
+                    <Label Text="3° Parcial" VerticalOptions="Center" Margin="20"
+                      />
+                    
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+            <Button Text="CALCULAR" BackgroundColor="Transparent" BorderWidth="4" Margin="40" Command="{Binding ClickCommand}"/>
+
+                    <Label Text="La Calificacion Minima Para Pasar es:" HorizontalOptions="Center" FontSize="15" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding Semestre.FinalGrade6}" HorizontalOptions="Center" FontSize="40"/>
+            <Label Text="La Calificacion Minima Para El 10 es:" HorizontalOptions="Center" FontSize="15" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding Semestre.FinalGrade10}" HorizontalOptions="Center" FontSize="40"/>
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
